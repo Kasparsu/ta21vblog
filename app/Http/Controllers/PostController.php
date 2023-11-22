@@ -13,7 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+       $posts = Post::latest()->paginate();
+       return view('posts.index', compact('posts'));
     }
 
     /**
@@ -21,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -29,7 +30,12 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+
+        $post = new Post($request->validated());
+        // $post->title = $request->validated('title');
+        // $post->body = $request->validated('body');
+        $post->save();
+        return redirect()->route('posts.index');
     }
 
     /**
