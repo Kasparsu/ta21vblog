@@ -23,7 +23,7 @@
         <ul class="menu menu-horizontal px-1">
             <li><a href="{{route('home')}}">Home</a></li>
             @auth
-                <li tabindex="0">
+                <li tabindex="0" class="z-10">
                     <details>
                         <summary>Admin</summary>
                         <ul class="p-2">
@@ -40,7 +40,7 @@
             <a class="btn btn-primary ml-3" href="{{route('register')}}">Register</a>
         @else
             <ul class="menu menu-horizontal px-1">
-                <li tabindex="0">
+                <li tabindex="0" class="z-10">
                     <details>
                         <summary>{{auth()->user()->name}}</summary>
                         <ul class="p-2">
