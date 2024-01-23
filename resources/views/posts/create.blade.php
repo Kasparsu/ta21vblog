@@ -31,10 +31,10 @@
                     </div>
                     <div class="form-control w-full">
                         <label class="label">
-                            <span class="label-text">Image</span>
+                            <span class="label-text">Images</span>
                         </label>
-                        <input type="file" class="file-input file-input-bordered w-full" name="image" />
-                        @error('image')
+                        <input type="file" multiple class="file-input file-input-bordered w-full" name="images[]" />
+                        @error('images.*')
                             <label class="label">
                                 <span class="label-text-alt text-error">{{ $message }}</span>
                             </label>

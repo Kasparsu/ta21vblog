@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Image;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends Controller
@@ -36,6 +37,12 @@ class PostController extends Controller
         // $post->body = $request->validated('body');
         $post->user()->associate(auth()->user());
         $post->save();
+        foreach($request->file('images') as $file){
+            $image = new Image();
+            $image->path = $file;
+            $image->post()->associate($post);
+            $image->save();
+        }
         return redirect()->route('posts.index');
     }
 
