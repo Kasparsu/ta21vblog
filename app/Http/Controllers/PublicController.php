@@ -12,4 +12,8 @@ class PublicController extends Controller
         //dd($posts->toArray());
         return view('welcome', compact('posts'));
     }
+
+    public function post(Post $post){
+        return view('post', compact('post'));
+    }
 }
