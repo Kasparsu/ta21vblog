@@ -29,20 +29,12 @@ class Post extends Model
         return $this->hasMany(Image::class);
     }
 
-    // public function image():Attribute {
-    //     return Attribute::make(
-    //         get: function ($image){
-    //             if(!$image || parse_url($image, PHP_URL_SCHEME)){
-    //                 return $image;
-    //             }
-    //             return Storage::url($image);
-    //         },
-    //         set: function ($image){
-    //             if(!is_a($image, UploadedFile::class)){
-    //                 return $image;
-    //             }
-    //             return request()->file('image')->store('public');
-    //         }
-    //     );
-    // }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
 }
