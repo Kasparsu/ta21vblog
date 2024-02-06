@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class PublicController extends Controller
         $posts = Post::whereIn(
             'user_id',
             auth()->user()->followees->pluck('id')->toArray()
-        )->latest()->paginate(16);
+        )->withCount('likes')->orderBy('likes_count', 'desc')->paginate(16);
         //dd($posts->toArray());
         return view('welcome', compact('posts'));
     }
@@ -63,5 +64,10 @@ class PublicController extends Controller
             $user->followers()->detach(auth()->user());
         }
         return redirect()->back();
+    }
+
+    public function tag(Tag $tag){
+        $posts = $tag->posts()->latest()->paginate(16);
+        return view('welcome', compact('posts'));
     }
 }
