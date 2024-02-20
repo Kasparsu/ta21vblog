@@ -26,6 +26,7 @@
                             <h2 class="card-title">{{ $post->title }}</h2>
                             <p>{{ $post->snippet }}...</p>
                             <p class="text-gray-500">{{ $post->created_at->diffForHumans() }}</p>
+                            <p class="text-gray-500">{{ $post->created_at }}</p>
                             <p class="text-gray-500">
                                 <a href="{{route('user', ['user'=> $post->user])}}">{{ $post->user->name }}</a>
                             </p>
