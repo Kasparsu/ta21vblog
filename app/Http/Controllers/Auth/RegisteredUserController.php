@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
 class RegisteredUserController extends Controller
 {
@@ -30,7 +31,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): Response
+    public function store(Request $request): HttpFoundationResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
